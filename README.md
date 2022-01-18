@@ -1,1 +1,1 @@
-# Phishing-and-spam-detection
+# Phishing-and-Spam-Detection
