@@ -53,14 +53,10 @@ def predict():
     # transformed_sms = transform_text(msg)
     # vector_input = tfidf.transform([transformed_sms])
     # spam = clf1.predict(vector_input)[0]
-    phish = 0
-    try:
-        msg = re.search("(?P<url>https?://[^\s]+)",msg ).group("url")
-        pred = Extraction.featureExtraction(msg)
-        pred = np.array(pred).reshape((1,-1))[0]
-        phish = clf2.predict(pred)
-    except:
-        phish = 1
+    msg = re.search("(?P<url>https?://[^\s]+)",msg ).group("url")
+    pred = Extraction.featureExtraction(msg)
+    pred = np.array(pred).reshape((1,-1))
+    phish = clf2.predict(pred)[0]
 
     if(phish == 1):
         output = "Suspected Phishing Site"
