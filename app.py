@@ -1,4 +1,4 @@
-from flask import Flask,request,jsonify
+from flask import Flask,request,jsonify,render_template
 import pickle
 import Extraction
 import numpy as np
@@ -45,9 +45,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "Phishing Detection"
+    return render_template('index.html')
 
-@app.route('/predict',methods=['POST','GET'])
+@app.route('/predict',methods=['POST'])
 def predict():
     msg = request.form.get('message')
     transformed_sms = transform_text(msg)
@@ -61,9 +61,19 @@ def predict():
         phish = clf2.predict(pred)
     except:
         phish = 0
+
+    if(phish == 1):
+        output = "Suspected Phishing Site"
+    elif(spam == 1 and phish == 0):
+        output = "Suspicous"
+    else:
+        output = "Safe"
             
 
-    return jsonify({'spam':str(spam),'phish':str(phish)})
+    #return jsonify({'spam':str(spam),'phish':str(phish)})
+
+    return render_template('index.html', prediction_text=output)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
