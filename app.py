@@ -60,7 +60,7 @@ def predict():
         pred = np.array(pred).reshape((1,-1))[0]
         phish = clf2.predict(pred)
     except:
-        phish = 0
+        phish = 1
 
     if(phish == 1):
         output = "Suspected Phishing Site"
