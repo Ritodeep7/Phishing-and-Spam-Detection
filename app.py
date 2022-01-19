@@ -12,7 +12,6 @@ from nltk.stem.porter import PorterStemmer
 clf1 = pickle.load(open('spam_model.pkl','rb'))
 clf2 = pickle.load(open('ctb.pkl','rb'))
 tfidf = pickle.load(open('vectorizer.pkl','rb'))
-nltk.download('punkt')
 
 ps = PorterStemmer()
 
@@ -49,8 +48,7 @@ def index():
 
 @app.route('/predict',methods=['GET'])
 def predict():
-    msg = request.form.get('message')
-    msg = str(msg)
+    msg = request.args.get("message")
     transformed_sms = transform_text(msg)
     vector_input = tfidf.transform([transformed_sms])
     spam = clf1.predict(vector_input)[0]
@@ -78,6 +76,4 @@ def predict():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
 
