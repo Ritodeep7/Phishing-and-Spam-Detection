@@ -50,6 +50,7 @@ def index():
 @app.route('/predict',methods=['GET,POST'])
 def predict():
     msg = request.form.get('message')
+    msg = str(msg)
     transformed_sms = transform_text(msg)
     vector_input = tfidf.transform([transformed_sms])
     spam = clf1.predict(vector_input)[0]
