@@ -8,5 +8,4 @@ whois==0.9.13
 gunicorn==19.9.0
 scikit-learn==1.0
 catboost==1.0.4
-re
-string
+

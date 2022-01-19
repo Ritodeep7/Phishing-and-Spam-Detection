@@ -49,10 +49,10 @@ def index():
 @app.route('/predict',methods=['GET'])
 def predict():
     msg = request.args.get("message")
-    msg = str(msg)
-    transformed_sms = transform_text(msg)
-    vector_input = tfidf.transform([transformed_sms])
-    spam = clf1.predict(vector_input)[0]
+    # msg = str(msg)
+    # transformed_sms = transform_text(msg)
+    # vector_input = tfidf.transform([transformed_sms])
+    # spam = clf1.predict(vector_input)[0]
     phish = 0
     try:
         msg = re.search("(?P<url>https?://[^\s]+)",msg ).group("url")
@@ -62,10 +62,10 @@ def predict():
     except:
         phish = 0
 
-    if(phish == 1 and spam == 0 or phish == 1 and spam == 1):
+    if(phish == 1):
         output = "Suspected Phishing Site"
-    elif(spam == 1 and phish == 0):
-        output = "Suspicous"
+    # elif(spam == 1 and phish == 0):
+    #     output = "Suspicous"
     else:
         output = "Safe"
             
