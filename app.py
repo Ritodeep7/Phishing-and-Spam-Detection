@@ -71,9 +71,9 @@ def predict():
         output = "Safe"
             
 
-    #return jsonify({'spam':str(spam),'phish':str(phish)})
+    return jsonify({'result':output})
 
-    return render_template('index.html', prediction_text=output)
+    #return render_template('index.html', prediction_text=output)
 
 
 if __name__ == '__main__':
