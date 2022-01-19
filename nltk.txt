@@ -1,3 +1,4 @@
-wordenet
+wordnet
 pros_cons
 reuters
+punkt
