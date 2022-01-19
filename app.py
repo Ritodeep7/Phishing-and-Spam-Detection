@@ -47,7 +47,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/predict',methods=['POST'])
+@app.route('/predict',methods=['GET','POST'])
 def predict():
     msg = request.form.get('message')
     transformed_sms = transform_text(msg)
