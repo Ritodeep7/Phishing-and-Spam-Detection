@@ -17,7 +17,7 @@
  <div class="login">
 	<h1>Predict Threat</h1>
 
-    <form action="{{ url_for('predict')}}"method="get">
+    <form action="{{ url_for('predict')}}"method="post">
         <input type="text" name="message" placeholder="message" required="required" />
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
